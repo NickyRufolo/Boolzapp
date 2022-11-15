@@ -21,14 +21,22 @@
 .open-chat{
     background-image: url("./mine.jpg");
 }
-.ricevuti {
+.received > p {
     background-color: rgb(255, 255, 255);
     width: 50%;
 }
-.inviati {
+.sent > p {
     background-color: lightgreen;
     width: 35%;
 }
 .hour-sent {
     font-size: 0.5rem;
+}
+.sent {
+justify-content: end;
+display: flex
+}
+.received {
+    justify-content: start;
+    display: flex
 }
