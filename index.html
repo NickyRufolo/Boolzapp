@@ -32,6 +32,7 @@
                     <i class="fa-solid fa-ellipsis-vertical pe-2"></i>
                 </div>
             </div>
+
             <!-- Ricevi notifiche di nuovi messaggi -->
             <div class="azure-bg d-flex align-items-center p-2">
                 <div class="d-block rounded-circle">
@@ -49,16 +50,17 @@
                 <input type="text" class="form-control" placeholder="Cerca o inizia una nuova chat" aria-label="Cerca"
                     aria-describedby="basic-addon1">
             </div>
-
-            <!-- Prima chat -->
-            <div v-for="(element,index) in contacts" class="p-2 prima-chat d-flex justify-content-between align-items-center">
+            <!-- Prima chat Dynamics Chats -->
+            <!-- Creo ciclo Dor per generare in automatico tutte le card chat con avatar e nome -->
+        
+            <div v-for="(element,index) in contacts" @click="indiceCorrente(index)" class="p-2 prima-chat d-flex justify-content-between align-items-center">
                 <div class="d-flex ps-2">
                     <div>
                                                 <!-- aggiungo il dollaro e element.avatar dal jaavascript cosicche mi cambia solo la fine dal JS-->
                         <img id="user1" class="rounded-circle p-2" v-bind:src= "`./avatar${element.avatar}.jpg`" alt="">
                     </div>
                     <div class="ps-2">
-                        <!-- aggiungo il name dell'element dal jaavascript cosicche me lo moltiplica come i pani e pesci -->
+                        <!-- stampo nome nel dom andando in contacts -->
                         <span>{{element.name}}</span><br>
                         <span class="text-secondary">Ultimo accesso inviato</span>
                     </div>
@@ -76,10 +78,10 @@
             <div id="pe-2" class="aperta-chat d-flex justify-content-between align-items-center p-1">
                 <div class="d-flex ps-2">
                     <div>
-                        <img id="user1" class="rounded-circle p-2" src="./avatar_1.jpg" alt="">
+                        <img id="user1" class="rounded-circle p-2" :src="`./avatar${contacts[currentIndex].avatar}.jpg`" alt="">
                     </div>
                     <div class="ps-2">
-                        <span>Isabel</span><br>
+                        <span>{{contacts[currentIndex].name}}</span><br>
                         <span class="text-secondary">Ultimo accesso oggi alle 12:00</span>
                     </div>
                 </div>
@@ -93,7 +95,7 @@
 <!-- background centrale div container chat-->
             <div class="open-chat flex-grow-1">
 <!-- per ogni elemento, indice in contacs posizione [es.4] prendimi il messagge -->
-                <div class="p-5 d-flex flex-column" v-for="(element,index) in contacts[4].messages">
+                <div class="p-5 d-flex flex-column" v-for="(element,index) in contacts[currentIndex].messages">
 <!-- con v bind prendo lo status dell'elemento se è sent mi si attiva la classe sent in css, se è received mi si attiva la classe received -->
                     <div v-bind:class="element.status">
                         <p class="inviati d-flex justify-content-between rounded-3 p-2 mt-1">{{element.message}}

@@ -171,6 +171,12 @@ var app = new Vue({
                     }
                 ],
             }
-        ]
+        ],
+        currentIndex: 0,
+    },
+    methods: {indiceCorrente(param){
+        console.log(this.currentIndex);
+        return this.currentIndex = param
     }
-})
+},
+});
