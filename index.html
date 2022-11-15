@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boolzapp</title>
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+</head>
+
+<body>
+    <!-- div contenitore 100vh con istanza Vue.Js -->
+    <div id="app" class="d-flex justify-content-center vh-100 align-items-center">
+
+        <!-- colonna SX  chat -->
+        <div class="bg-light col-4 vh-100 mt-4">
+
+            <!-- User in alto Sx -->
+            <div id="pe-2" class=" bg-light d-flex justify-content-between align-items-center p-1">
+                <div><img id="user1" class="rounded-circle p-2" src="./avatar_1.jpg" alt=""> <span>Nicky</span></div>
+                <div class="p-2">
+                    <i class="fa-solid fa-circle-notch pe-2"></i>
+                    <i class="fa-solid fa-message pe-2"></i>
+                    <i class="fa-solid fa-ellipsis-vertical pe-2"></i>
+                </div>
+            </div>
+            <!-- Ricevi notifiche di nuovi messaggi -->
+            <div class="azure-bg d-flex align-items-center p-2">
+                <div class="d-block rounded-circle">
+                    <i class="fa-solid fa-bell-slash p-1"></i>
+                </div>
+                <div class="ps-2">
+                    <span>Ricevi notifiche di nuovi messaggi</span><br>
+                    <span class="text-decoration-underline text-secondary">Attiva notifiche che desktop</span>
+                </div>
+            </div>
+
+            <!-- Cerca o inizia una nuova chat  -->
+            <div class="input-group mb-2 pt-2">
+                <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-magnifying-glass"></i></span>
+                <input type="text" class="form-control" placeholder="Cerca o inizia una nuova chat" aria-label="Cerca"
+                    aria-describedby="basic-addon1">
+            </div>
+
+            <!-- Prima chat -->
+            <div v-for="(element,index) in contacts" class="p-2 prima-chat d-flex justify-content-between align-items-center">
+                <div class="d-flex ps-2">
+                    <div>
+                                                <!-- aggiungo il dollaro e element.avatar dal jaavascript cosicche mi cambia solo la fine dal JS-->
+                        <img id="user1" class="rounded-circle p-2" v-bind:src= "`./avatar${element.avatar}.jpg`" alt="">
+                    </div>
+                    <div class="ps-2">
+                        <!-- aggiungo il name dell'element dal jaavascript cosicche me lo moltiplica come i pani e pesci -->
+                        <span>{{element.name}}</span><br>
+                        <span class="text-secondary">Ultimo accesso inviato</span>
+                    </div>
+                </div>
+                <div class="p-2">
+                    <p>12.00</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex flex-column col-6 vh-100 mt-4">
+            <!-- colonna DX  Intera chat -->
+
+            <!-- User in alto Dx -->
+            <div id="pe-2" class="aperta-chat d-flex justify-content-between align-items-center p-1">
+                <div class="d-flex ps-2">
+                    <div>
+                        <img id="user1" class="rounded-circle p-2" src="./avatar_1.jpg" alt="">
+                    </div>
+                    <div class="ps-2">
+                        <span>Isabel</span><br>
+                        <span class="text-secondary">Ultimo accesso oggi alle 12:00</span>
+                    </div>
+                </div>
+                <div class="p-2">
+                    <i class="fa-solid fa-circle-notch pe-2"></i>
+                    <i class="fa-solid fa-message pe-2"></i>
+                    <i class="fa-solid fa-ellipsis-vertical pe-2"></i>
+                </div>
+            </div>
+
+<!-- background centrale div -->
+            <div class="open-chat flex-grow-1">
+                <div class="p-5 d-flex flex-column">
+                    <div class="d-flex justify-content-start ">
+                        <p class="ricevuti d-flex justify-content-between rounded-3 p-2 mt-1">What do you want?
+                            <span class="hour-sent mt-3">12.00</span>
+                        </p>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <p class="inviati d-flex justify-content-between rounded-3 p-2 mt-1">you
+                            <span class="hour-sent mt-3">12.00</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+<!-- barra invio -->
+            <div class="input-group mb-3">
+                <span class="input-group-text">
+                    <i class="fa-regular fa-face-smile p-3"></i></span>
+                <input type="text" class="form-control" placeholder="Scrivi un messaggio" aria-label="Amount (to the nearest dollar)">
+                <span class="input-group-text">
+                    <i class="fa-solid fa-microphone p-3"></i></span>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 script -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+        </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
+        integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous">
+        </script>
+    <!-- vue 2 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <!-- Mio script -->
+    <script src="./main.js"></script>
+</body>
+
+</html>

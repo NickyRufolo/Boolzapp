@@ -1,0 +1,34 @@
+#app {background: linear-gradient(0deg, #DBDBD3 85%, #00ddff 15%);}
+
+#user1 {
+    height: 50px;
+    width: 50px;
+}
+.azure-bg {
+    background-color: aqua;
+}
+.rounded-circle {
+    background-color: white;
+    font-size: 3rem;
+    color: #00ddff;
+}
+.prima-chat{
+    background-color: rgb(255, 255, 255);
+}
+.aperta-chat{
+    background-color: rgb(198, 196, 196);
+}
+.open-chat{
+    background-image: url("./mine.jpg");
+}
+.ricevuti {
+    background-color: rgb(255, 255, 255);
+    width: 50%;
+}
+.inviati {
+    background-color: lightgreen;
+    width: 35%;
+}
+.hour-sent {
+    font-size: 0.5rem;
+}
