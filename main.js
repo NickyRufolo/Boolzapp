@@ -1,7 +1,11 @@
 var app = new Vue({
     el: '#app',
     data: {
-        contacts: [
+        currentIndex: 0,
+        messaggeUtent: [],
+        riposta: "pur tu",
+        cercaNome: ``,
+        contacts:[
             {
                 name: 'Michele',
                 avatar: '_1',
@@ -172,11 +176,40 @@ var app = new Vue({
                 ],
             }
         ],
-        currentIndex: 0,
     },
-    methods: {indiceCorrente(param){
+
+    //funzione per assegnare alla chiave array "currentIndex" 
+    //un numero quando clicco che equivale all'indice dell'array cliccato
+    //generato nel ciclo for nell'html
+    methods: {
+        indiceCorrente(param){
         console.log(this.currentIndex);
         return this.currentIndex = param
-    }
+        // assegnami parametro
+    },
+    
+    //funzione che prende il value di un input e lo vediamo nel console.log 
+    sentMessagge(param){
+
+    this.contacts[param].messages.push({
+        message: this.messaggeUtent,
+        status: 'sent',
+    });
+    this.messaggeUtent = "";
+    this.ritornaOK(param);
+    },
+
+    //funzione che ritorna la var ok
+    ritornaOK(param){
+    ritornaOK = setTimeout(() => {
+    this.contacts[param].messages.push({
+        message: this.riposta,
+        status: "received",
+    });
+    }, 3000);
 },
-});
+findName(param){
+
+}
+}
+})

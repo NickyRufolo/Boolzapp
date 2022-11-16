@@ -44,19 +44,22 @@
                 </div>
             </div>
 
-            <!-- Cerca o inizia una nuova chat  -->
+            <!-- Input Cerca o inizia una nuova chat  -->
             <div class="input-group mb-2 pt-2">
                 <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-magnifying-glass"></i></span>
-                <input type="text" class="form-control" placeholder="Cerca o inizia una nuova chat" aria-label="Cerca"
+                <input v-model="cercaNome" type="text" class="form-control" placeholder="Cerca o inizia una nuova chat" aria-label="Cerca"
                     aria-describedby="basic-addon1">
             </div>
+
             <!-- Prima chat Dynamics Chats -->
-            <!-- Creo ciclo Dor per generare in automatico tutte le card chat con avatar e nome -->
-        
+            <!-- Creo ciclo For per generare in automatico tutte le card chat con avatar e nome -->
+        <!-- 1 cosa da fare Creare dinamicamente tutti i contatti con l'element (tutte le info) + Index (numero) -->
+        <!-- poi li metto al click attivami la funzione -->
+        <!-- qua è importante mettere Index ma quando la invoco la posso invoare in un altro modo -->
             <div v-for="(element,index) in contacts" @click="indiceCorrente(index)" class="p-2 prima-chat d-flex justify-content-between align-items-center">
                 <div class="d-flex ps-2">
                     <div>
-                                                <!-- aggiungo il dollaro e element.avatar dal jaavascript cosicche mi cambia solo la fine dal JS-->
+            <!-- aggiungo il dollaro e element.avatar dal jaavascript cosicche mi cambia solo la fine dal JS-->
                         <img id="user1" class="rounded-circle p-2" v-bind:src= "`./avatar${element.avatar}.jpg`" alt="">
                     </div>
                     <div class="ps-2">
@@ -93,11 +96,11 @@
             </div>
 
 <!-- background centrale div container chat-->
-            <div class="open-chat flex-grow-1">
+            <div class="overflow-auto open-chat flex-grow-1">
 <!-- per ogni elemento, indice in contacs posizione [es.4] prendimi il messagge -->
                 <div class="p-5 d-flex flex-column" v-for="(element,index) in contacts[currentIndex].messages">
 <!-- con v bind prendo lo status dell'elemento se è sent mi si attiva la classe sent in css, se è received mi si attiva la classe received -->
-                    <div v-bind:class="element.status">
+                    <div v-bind:class="element.status" >
                         <p class="inviati d-flex justify-content-between rounded-3 p-2 mt-1">{{element.message}}
                             <span class="hour-sent mt-3">12.00</span>
                         </p>
@@ -109,7 +112,8 @@
             <div class="input-group mb-3">
                 <span class="input-group-text">
                     <i class="fa-regular fa-face-smile p-3"></i></span>
-                <input type="text" class="form-control" placeholder="Scrivi un messaggio" aria-label="Amount (to the nearest dollar)">
+                    <!-- con v-model prendo valore diretto senza dire get element by id -->
+                <input v-model="messaggeUtent" v-on:keyup.enter="sentMessagge(currentIndex)" type="text" class="form-control" placeholder="Scrivi un messaggio" aria-label="Amount (to the nearest dollar)">
                 <span class="input-group-text">
                     <i class="fa-solid fa-microphone p-3"></i></span>
             </div>
