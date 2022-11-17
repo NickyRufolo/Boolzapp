@@ -1,16 +1,16 @@
-#app {background: linear-gradient(0deg, #DBDBD3 85%, #00ddff 15%);}
+#app {background: linear-gradient(0deg, #DBDBD3 85%, #019788 15%);}
 
 #user1 {
     height: 50px;
     width: 50px;
 }
 .azure-bg {
-    background-color: aqua;
+    background-color: #8EDAFC;;
 }
 .rounded-circle {
     background-color: white;
     font-size: 3rem;
-    color: #00ddff;
+    color:#8EDAFC;;
 }
 .prima-chat{
     background-color: rgb(255, 255, 255);
@@ -21,13 +21,13 @@
 .open-chat{
     background-image: url("./mine.jpg");
 }
-.received > p {
+.received > div{
     background-color: rgb(255, 255, 255);
     width: 50%;
 }
-.sent > p {
-    background-color: lightgreen;
-    width: 35%;
+.sent > div {
+    background-color:#D5F9BA;
+    width: 50%;
 }
 .hour-sent {
     font-size: 0.5rem;
@@ -40,3 +40,15 @@ display: flex
     justify-content: start;
     display: flex
 }
+
+.button-hour:hover .d-none {
+color: #D5F9BA;
+display: block !important;
+}
+
+.prima-chat:hover {
+    background-color: #8EDAFC;
+    display: block !important;
+}
+
+

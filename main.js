@@ -4,7 +4,7 @@ var app = new Vue({
         currentIndex: 0,
         messaggeUtent: [],
         riposta: "pur tu",
-        cercaNome: ``,
+        cercaNome: "",
         contacts:[
             {
                 name: 'Michele',
@@ -182,34 +182,37 @@ var app = new Vue({
     //un numero quando clicco che equivale all'indice dell'array cliccato
     //generato nel ciclo for nell'html
     methods: {
-        indiceCorrente(param){
-        console.log(this.currentIndex);
-        return this.currentIndex = param
-        // assegnami parametro
-    },
-    
-    //funzione che prende il value di un input e lo vediamo nel console.log 
-    sentMessagge(param){
+        indiceCorrente(param) {
+            console.log(this.currentIndex);
+            return this.currentIndex = param
+            // assegnami parametro
+        },
 
-    this.contacts[param].messages.push({
-        message: this.messaggeUtent,
-        status: 'sent',
-    });
-    this.messaggeUtent = "";
-    this.ritornaOK(param);
-    },
+        //funzione che prende il value di un input e lo vediamo nel console.log 
+        sentMessagge(param) {
 
-    //funzione che ritorna la var ok
-    ritornaOK(param){
-    ritornaOK = setTimeout(() => {
-    this.contacts[param].messages.push({
-        message: this.riposta,
-        status: "received",
-    });
-    }, 3000);
-},
-findName(param){
+            this.contacts[param].messages.push({
+                message: this.messaggeUtent,
+                status: 'sent',
+            });
+            this.messaggeUtent = "";
+            this.ritornaOK(param);
+        },
 
-}
-}
-})
+        //funzione che ritorna la var ok
+        ritornaOK(param) {
+            ritornaOK = setTimeout(() => {
+                this.contacts[param].messages.push({
+                    message: this.riposta,
+                    status: "received",
+                });
+            }, 3000);
+        },
+
+        deleteMessage(currentIndex, index) {
+            //per rimuovere oggetti all'array uso splice() dove il parametro sarà l'indexcliccato di riferimento
+            this.contacts[currentIndex].messages.splice(index,1)
+        }
+    }
+
+});
