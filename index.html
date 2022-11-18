@@ -47,34 +47,34 @@
             <!-- Input Cerca o inizia una nuova chat  -->
             <div class="input-group mb-2 pt-2">
                 <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-magnifying-glass"></i></span>
-                <input v-model="cercaNome" type="text" class="form-control" placeholder="Cerca o inizia una nuova chat"
-                    aria-label="Cerca" aria-describedby="basic-addon1">
+                <input v-model="cercaNome" type="text" class="form-control" placeholder="Cerca o inizia una nuova chat" aria-label="Cerca"
+                    aria-describedby="basic-addon1">
             </div>
 
             <!-- Prima chat Dynamics Chats -->
             <!-- Creo ciclo For per generare in automatico tutte le card chat con avatar e nome -->
-            <!-- 1 cosa da fare Creare dinamicamente tutti i contatti con l'element (tutte le info) + Index (numero) -->
-            <!-- poi li metto al click attivami la funzione -->
-            <!-- qua è importante mettere Index ma quando la invoco la posso invoare in un altro modo -->
-            <!-- if se include cerca nom enll'input allora generalo, dopo il ciclo for che analizza e genera gli element in contacts -->
-            <div v-for="(element,index) in contacts" v-if="element.name.toLowerCase().includes(cercaNome.toLowerCase())"
-                @click="indiceCorrente(index)" class="p-2 prima-chat d-flex justify-content-between align-items-center">
-
+        <!-- 1 cosa da fare Creare dinamicamente tutti i contatti con l'element (tutte le info) + Index (numero) -->
+        <!-- poi li metto al click attivami la funzione -->
+        <!-- qua è importante mettere Index ma quando la invoco la posso invoare in un altro modo -->
+        <!-- if se include cerca nom enll'input allora generalo, dopo il ciclo for che analizza e genera gli element in contacts -->
+            <div v-for="(element,index) in contacts" v-if="element.name.toLowerCase().includes(cercaNome.toLowerCase())" @click="miaFunzione(index)" 
+            class="p-2 prima-chat d-flex justify-content-between align-items-center">
                 <div class="d-flex ps-2">
                     <div>
-                        <!-- aggiungo il dollaro e element.avatar dal javascript cosicche mi cambia solo la fine dal JS-->
-                        <img id="user1" class="rounded-circle p-2" v-bind:src="`./avatar${element.avatar}.jpg`" alt="">
+            <!-- aggiungo il dollaro e element.avatar dal javascript cosicche mi cambia solo la fine dal JS-->
+                        <img id="user1" class="rounded-circle p-2" v-bind:src= "`./avatar${element.avatar}.jpg`" alt="">
                     </div>
 
-                    <div class="">
-                        <div class="aaa ps-2 ">
-                            <!-- stampo nome nel dom andando in contacts -->
-                            <span>{{element.name}}</span><br>
-                            <span class="text-secondary">Ultimo accesso inviato</span>
-                        </div>
-
+                <div class="d-flex align-items-start justify-content-around">
+                    <div class="aaa ps-2 ">
+                        <!-- stampo nome nel dom andando in contacts -->
+                        <span>{{element.name}}</span><br>
+                        <span class="text-secondary">Ultimo accesso inviato</span>
                     </div>
-
+                    <div class="p-2 ">
+                        <p class="ora">{{element.time}}</p>
+                    </div>
+                </div>
                 </div>
 
             </div>
@@ -87,8 +87,7 @@
             <div id="pe-2" class="aperta-chat d-flex justify-content-between align-items-center p-1">
                 <div class="d-flex ps-2">
                     <div>
-                        <img id="user1" class="rounded-circle p-2" :src="`./avatar${contacts[currentIndex].avatar}.jpg`"
-                            alt="">
+                        <img id="user1" class="rounded-circle p-2" :src="`./avatar${contacts[currentIndex].avatar}.jpg`" alt="">
                     </div>
                     <div class="ps-2">
                         <span>{{contacts[currentIndex].name}}</span><br>
@@ -102,42 +101,40 @@
                 </div>
             </div>
 
-            <!-- background centrale div container chat-->
+<!-- background centrale div container chat-->
             <div class="overflow-auto open-chat flex-grow-1">
-                <!-- per ogni elemento, indice in contacs posizione [es.4] prendimi il messagge -->
+<!-- per ogni elemento, indice in contacs posizione [es.4] prendimi il messagge -->
                 <div class="p-5 d-flex flex-column" v-for="(element,index) in contacts[currentIndex].messages">
-
-                    <!-- con v bind prendo lo status dell'elemento se è sent mi si attiva la classe sent in css, se è received mi si attiva la classe received -->
-                    <div v-bind:class="element.status">
+                
+<!-- con v bind prendo lo status dell'elemento se è sent mi si attiva la classe sent in css, se è received mi si attiva la classe received -->
+                    <div v-bind:class="element.status" >
                         <div class="inviati d-flex justify-content-between rounded-3 p-2 mt-1">{{element.message}}
 
                             <!-- bottone elimina in hover -->
-                            <div class="button-hour flex-column">
-                                <div class="dropdown">
-                                    <button class="btn d-none" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa-solid fa-chevron-down"></i>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">Info messaggio</a></li>
-                                        <li @click="deleteMessage(currentIndex, index)"><a class="dropdown-item"
-                                                href="#">Elimina messaggio</a></li>
-                                    </ul>
-                                </div>
-                                <!-- orario -->
-                                <span class="hour-sent mt-3">12.00</span>
+                        <div class="button-hour flex-column">
+                            <div class="dropdown">
+                                <button class="btn d-none" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Info messaggio</a></li>
+                                    <li @click="deleteMessage(currentIndex, index)"><a class="dropdown-item" href="#">Elimina messaggio</a></li>
+                                </ul>
                             </div>
+                            <!-- orario -->
+                            <span class="hour-sent mt-3">12.00</span>
                         </div>
+                    </div>
                     </div>
                 </div>
             </div>
 
-            <!-- barra invio -->
+<!-- barra invio -->
             <div class="input-group mb-3">
                 <span class="input-group-text">
                     <i class="fa-regular fa-face-smile p-3"></i></span>
-                <!-- con v-model prendo valore diretto senza dire get element by id -->
-                <input v-model="messaggeUtent" v-on:keyup.enter="sentMessagge(currentIndex)" type="text"
-                    class="form-control" placeholder="Scrivi un messaggio" aria-label="Amount (to the nearest dollar)">
+                    <!-- con v-model prendo valore diretto senza dire get element by id -->
+                <input v-model="messaggeUtent" v-on:keyup.enter="sentMessagge(currentIndex)" type="text" class="form-control" placeholder="Scrivi un messaggio" aria-label="Amount (to the nearest dollar)">
                 <span class="input-group-text">
                     <i class="fa-solid fa-microphone p-3"></i></span>
             </div>

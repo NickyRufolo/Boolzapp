@@ -1,7 +1,7 @@
 var app = new Vue({
     el: '#app',
     data: {
-        currentIndex: 0,
+        currentIndex: 0, //do standard indice 0 come se fosse variabile
         messaggeUtent: [],
         riposta: "pur tu",
         cercaNome: "",
@@ -182,7 +182,7 @@ var app = new Vue({
     //un numero quando clicco che equivale all'indice dell'array cliccato
     //generato nel ciclo for nell'html
     methods: {
-        indiceCorrente(param) {
+        miaFunzione(param) {
             console.log(this.currentIndex);
             return this.currentIndex = param
             // assegnami parametro
@@ -214,5 +214,4 @@ var app = new Vue({
             this.contacts[currentIndex].messages.splice(index,1)
         }
     }
-
 });

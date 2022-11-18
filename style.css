@@ -29,8 +29,8 @@
     background-color:#D5F9BA;
     width: 50%;
 }
-.hour-sent {
-    font-size: 0.5rem;
+.font-hour {
+    font-size: 0.7rem;
 }
 .sent {
 justify-content: end;
@@ -50,5 +50,6 @@ display: block !important;
     background-color: #8EDAFC;
     display: block !important;
 }
-
-
+.hourSX {
+margin-left: px;
+}
